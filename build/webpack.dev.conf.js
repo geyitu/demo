@@ -1,13 +1,14 @@
+// 该文件是开发环境中webpack的配置入口。
 'use strict'
-const utils = require('./utils')
+const utils = require('./utils')// 工具函数集合
 const webpack = require('webpack')
-const config = require('../config')
-const merge = require('webpack-merge')
+const config = require('../config')// 配置文件
+const merge = require('webpack-merge')// webpack 配置合并插件
 const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
+const baseWebpackConfig = require('./webpack.base.conf') // webpac基本配置
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin') // 自动生成 html 并且注入到 .html 文件中的插件
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin') // webpack错误信息提示插件
 const portfinder = require('portfinder')
 
 const HOST = process.env.HOST
@@ -17,7 +18,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
   },
-  // cheap-module-eval-source-map is faster for development
+  // cheap-module-eval-source-map is faster for development     // 最新的配置为 cheap-module-eval-source-map，虽然 cheap-module-eval-source-map更快，但它的定位不准确
   devtool: config.dev.devtool,
 
   // these devServer options should be customized in /config/index.js
@@ -52,6 +53,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
+    // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',

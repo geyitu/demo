@@ -1,6 +1,7 @@
+// 该文件，为构建打包文件，会将源码进行构建（编译、压缩等）后打包。
 'use strict'
 require('./check-versions')()
-
+// 设置当前环境为生产环境
 process.env.NODE_ENV = 'production'
 
 const ora = require('ora')
@@ -10,7 +11,7 @@ const chalk = require('chalk')
 const webpack = require('webpack')
 const config = require('../config')
 const webpackConfig = require('./webpack.prod.conf')
-
+// 在终端显示loading效果，并输出提示
 const spinner = ora('building for production...')
 spinner.start()
 

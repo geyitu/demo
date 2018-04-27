@@ -1,4 +1,4 @@
 export default {
-  API_PATH: '/pacs',
+  API_PATH: '/server',
   SERVER_URL: ''
 }
